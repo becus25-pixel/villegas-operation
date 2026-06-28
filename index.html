@@ -10,6 +10,7 @@
             --dark-bg: #0a0f0d;
             --panel-bg: rgba(16, 28, 21, 0.85);
             --alert-red: #ff3333;
+            --success-green: #00ff66;
         }
 
         body {
@@ -111,6 +112,34 @@
             box-shadow: 0 0 15px var(--terminal-green);
         }
 
+        /* Estilos específicos para el nuevo módulo de DNI */
+        .input-terminal {
+            width: 100%;
+            background-color: #000;
+            border: 1px solid var(--terminal-green);
+            color: var(--terminal-green);
+            padding: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            margin-top: 10px;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+
+        .input-terminal:focus {
+            outline: none;
+            box-shadow: 0 0 8px var(--terminal-green);
+        }
+
+        #resultado-dni {
+            margin-top: 15px;
+            padding: 12px;
+            border: 1px dashed var(--terminal-green);
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
         footer {
             margin-top: 30px;
             text-align: center;
@@ -203,6 +232,15 @@
             <button class="btn-action" onclick="interceptarDatos()">SOLICITAR ACTUALIZACIÓN DE ESTADO</button>
         </div>
 
+        <div class="panel">
+            <h2>[05] Validación de Permiso Especial</h2>
+            <p>Introduzca el DNI de control para comprobar el estatus de aptitud motriz:</p>
+            <input type="text" id="dniInput" class="input-terminal" placeholder="SISTEMA // INTRODUCIR DNI" maxlength="12">
+            <button class="btn-action" onclick="validarDNI()">EJECUTAR VERIFICACIÓN</button>
+            
+            <div id="resultado-dni"></div>
+        </div>
+
     </div>
 
     <footer>
@@ -227,6 +265,31 @@
             
             logBox.innerHTML += `<br><span style="color: #fff;">[${timestamp}]</span> ${randomLog}`;
             logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        // Nueva lógica de validación adaptada al estilo de tu terminal
+        function validarDNI() {
+            const dniVal = document.getElementById('dniInput').value.trim().toUpperCase();
+            const resBox = document.getElementById('resultado-dni');
+            
+            resBox.style.display = "block";
+            
+            if (dniVal === '1234567Y') {
+                resBox.style.color = "var(--success-green)";
+                resBox.style.borderColor = "var(--success-green)";
+                resBox.style.backgroundColor = "rgba(0, 255, 102, 0.1)";
+                resBox.innerHTML = "STATUS: APTO PARA CUATRO RUEDAS";
+            } else {
+                resBox.style.color = "var(--alert-red)";
+                resBox.style.borderColor = "var(--alert-red)";
+                resBox.style.backgroundColor = "rgba(255, 51, 51, 0.1)";
+                
+                if (dniVal === '') {
+                    resBox.innerHTML = "ERROR: EL CAMPO DNI NO PUEDE ESTAR VACÍO";
+                } else {
+                    resBox.innerHTML = "ERROR: SOCIO NO AUTORIZADA / RECHAZADO";
+                }
+            }
         }
     </script>
 </body>
