@@ -112,7 +112,6 @@
             box-shadow: 0 0 15px var(--terminal-green);
         }
 
-        /* Estilos específicos para el nuevo módulo de DNI */
         .input-terminal {
             width: 100%;
             background-color: #000;
@@ -149,7 +148,6 @@
             padding-top: 10px;
         }
 
-        /* Terminal Interactivo */
         #terminal-log {
             background-color: #000;
             border: 1px solid var(--terminal-green);
@@ -228,14 +226,20 @@
         <div class="panel">
             <h2>[04] Consola de Seguimiento</h2>
             <p>Haz clic para interceptar actualizaciones de la organización en tiempo real:</p>
+            
+            <ul class="intel-list" style="margin-bottom: 20px;">
+                <li>Los sujetos han sido avistados por diferentes clubes.</li>
+                <li>Los sujetos no se comunican con sus mujeres.</li>
+            </ul>
+
             <div id="terminal-log">> Sistema listo. Esperando órdenes...</div>
             <button class="btn-action" onclick="interceptarDatos()">SOLICITAR ACTUALIZACIÓN DE ESTADO</button>
         </div>
 
         <div class="panel">
             <h2>[05] Validación de Permiso Especial</h2>
-            <p>Introduzca el DNI de control para comprobar el estatus de aptitud motriz:</p>
-            <input type="text" id="dniInput" class="input-terminal" placeholder="SISTEMA // INTRODUCIR DNI" maxlength="12">
+            <p>Introduzca la clave o DNI de control para comprobar el estatus:</p>
+            <input type="text" id="dniInput" class="input-terminal" placeholder="SISTEMA // INTRODUCIR CLAVE O DNI" maxlength="12">
             <button class="btn-action" onclick="validarDNI()">EJECUTAR VERIFICACIÓN</button>
             
             <div id="resultado-dni"></div>
@@ -255,7 +259,9 @@
             "[MISTER] Cuenta Premium de Markus detectada en el servidor de Mundo Deportivo.",
             "[BIZUM] Esperando transferencias de 80€ de los agentes...",
             "[REQUERIMIENTO] Recordatorio: Se solicita personación urgente de Judith, Karla, Silvia y Laura.",
-            "[ESTADO] Todo sobre ruedas. Investigando ubicación precisa..."
+            "[ESTADO] Todo sobre ruedas. Investigando ubicación precisa...",
+            "[AVISTAMIENTO] Los sujetos han sido avistados por diferentes clubes.",
+            "[INTEL] Alerta de incomunicación: los sujetos no se comunican con sus mujeres."
         ];
 
         function interceptarDatos() {
@@ -267,27 +273,39 @@
             logBox.scrollTop = logBox.scrollHeight;
         }
 
-        // Nueva lógica de validación adaptada al estilo de tu terminal
         function validarDNI() {
             const dniVal = document.getElementById('dniInput').value.trim().toUpperCase();
             const resBox = document.getElementById('resultado-dni');
             
             resBox.style.display = "block";
             
-            if (dniVal === '1234567Y') {
+            if (dniVal === '04061991') {
+                resBox.style.color = "var(--success-green)";
+                resBox.style.borderColor = "var(--success-green)";
+                resBox.style.backgroundColor = "rgba(0, 255, 102, 0.1)";
+                resBox.innerHTML = "STATUS: SOCIO APTO PARA CUATRO RUEDAS <br><br> Villegas detectado. Deberías hablar con tu mujer pronto.";
+            } 
+            else if (dniVal === '28101992') {
+                resBox.style.color = "var(--success-green)";
+                resBox.style.borderColor = "var(--success-green)";
+                resBox.style.backgroundColor = "rgba(0, 255, 102, 0.1)";
+                resBox.innerHTML = "STATUS: SOCIO APTO PARA CUATRO RUEDAS <br><br> Primo ha sido rastreado y avistado correctamente. Deberías hablar con tu chica...";
+            }
+            else if (dniVal === '1234567Y') {
                 resBox.style.color = "var(--success-green)";
                 resBox.style.borderColor = "var(--success-green)";
                 resBox.style.backgroundColor = "rgba(0, 255, 102, 0.1)";
                 resBox.innerHTML = "STATUS: APTO PARA CUATRO RUEDAS";
-            } else {
+            } 
+            else {
                 resBox.style.color = "var(--alert-red)";
                 resBox.style.borderColor = "var(--alert-red)";
                 resBox.style.backgroundColor = "rgba(255, 51, 51, 0.1)";
                 
                 if (dniVal === '') {
-                    resBox.innerHTML = "ERROR: EL CAMPO DNI NO PUEDE ESTAR VACÍO";
+                    resBox.innerHTML = "ERROR: EL CAMPO NO PUEDE ESTAR VACÍO";
                 } else {
-                    resBox.innerHTML = "ERROR: SOCIO NO AUTORIZADA / RECHAZADO";
+                    resBox.innerHTML = "ERROR: CLAVE O SOCIO NO AUTORIZADA / RECHAZADO";
                 }
             }
         }
