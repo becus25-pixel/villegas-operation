@@ -165,6 +165,46 @@
             font-size: 0.9rem;
             margin-top: 10px;
         }
+
+        /* Estilos específicos para el reproductor de audio integrado */
+        .audio-player-container {
+            margin-top: 15px;
+            background: #000;
+            border: 1px dashed var(--terminal-green);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-audio {
+            background-color: transparent;
+            color: var(--terminal-green);
+            border: 1px solid var(--terminal-green);
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-audio:hover {
+            background-color: var(--terminal-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 10px var(--terminal-green);
+        }
+
+        .audio-status {
+            font-size: 0.85rem;
+            margin-top: 10px;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -231,8 +271,32 @@
             <p style="margin-top: 15px;">Si todo se desarrolla conforme a lo previsto, la operación continuará su curso... y, con suerte, <strong>todo irá sobre ruedas</strong>.</p>
         </div>
 
+        <!-- NUEVO APARTADO: MENSAJE DE VOZ DE VILLEGAS -->
         <div class="panel">
-            <h2>[04] Consola de Seguimiento</h2>
+            <h2>[04] Intercepción de Audio // Villegas</h2>
+            <p>Se ha interceptado una nota de voz cifrada en los servidores locales. El análisis sugiere comunicación directa del sujeto principal.</p>
+            
+            <div class="audio-player-container">
+                <p style="margin: 0 0 10px 0; font-weight: bold; color: var(--alert-red);">[!] REPRODUCIR ARCHIVO ADJUNTO</p>
+                
+                <!-- Elemento de audio nativo -->
+                <audio id="audioVillegas" src="Operación Villegas.mp3"></audio>
+                
+                <div class="audio-controls">
+                    <button class="btn-audio" onclick="toggleAudio()">REPRODUCIR / PAUSAR</button>
+                    <button class="btn-audio" onclick="reiniciarAudio()">REINICIAR</button>
+                </div>
+                
+                <div class="audio-status" id="audio-status-text">ESTADO: ARCHIVO DETENIDO // LISTO PARA TRANSMISIÓN</div>
+            </div>
+            
+            <p style="font-size: 0.85rem; margin-top: 15px; color: #ffaa00;">
+                <i>Nota: Si la reproducción falla, verifique que el archivo 'Operación Villegas.mp3' se encuentra exactamente en la misma carpeta que este archivo index.html.</i>
+            </p>
+        </div>
+
+        <div class="panel">
+            <h2>[05] Consola de Seguimiento</h2>
             <p>Haz clic para interceptar actualizaciones de la organización en tiempo real:</p>
             
             <ul class="intel-list" style="margin-bottom: 20px;">
@@ -245,7 +309,7 @@
         </div>
 
         <div class="panel">
-            <h2>[05] Validación de Permiso Especial</h2>
+            <h2>[06] Validación de Permiso Especial</h2>
             <p style="color: #ffaa00; font-weight: bold;">[!] ATENCIÓN: El código de acceso NO es el DNI. Introduzca la clave numérica obligatoria en formato de fecha (ddMMyyyy):</p>
             <input type="text" id="dniInput" class="input-terminal" placeholder="SISTEMA // INTRODUCIR CLAVE (ddMMyyyy)" maxlength="12">
             <button class="btn-action" onclick="validarDNI()">EJECUTAR VERIFICACIÓN</button>
@@ -280,6 +344,40 @@
             logBox.innerHTML += `<br><span style="color: #fff;">[${timestamp}]</span> ${randomLog}`;
             logBox.scrollTop = logBox.scrollHeight;
         }
+
+        // Lógica de control de audio de Villegas
+        const audio = document.getElementById('audioVillegas');
+        const statusText = document.getElementById('audio-status-text');
+
+        function toggleAudio() {
+            if (audio.paused) {
+                audio.play()
+                    .then(() => {
+                        statusText.innerHTML = "ESTADO: <span style='color: var(--success-green);'>TRANSMITIENDO AUDIO...</span>";
+                    })
+                    .catch(err => {
+                        statusText.innerHTML = "ESTADO: <span style='color: var(--alert-red);'>ERROR (Compruebe si existe 'Operación Villegas.mp3')</span>";
+                        console.error(err);
+                    });
+            } else {
+                audio.pause();
+                statusText.innerHTML = "ESTADO: ARCHIVO PAUSADO";
+            }
+        }
+
+        function reiniciarAudio() {
+            audio.currentTime = 0;
+            if (!audio.paused) {
+                audio.play();
+                statusText.innerHTML = "ESTADO: <span style='color: var(--success-green);'>RETRANSMITIENDO DESDE EL INICIO...</span>";
+            } else {
+                statusText.innerHTML = "ESTADO: ARCHIVO REINICIADO Y DETENIDO";
+            }
+        }
+
+        audio.addEventListener('ended', function() {
+            statusText.innerHTML = "ESTADO: TRANSMISIÓN FINALIZADA";
+        });
 
         function validarDNI() {
             const dniVal = document.getElementById('dniInput').value.trim().toUpperCase();
