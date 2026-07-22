@@ -11,6 +11,12 @@
             --panel-bg: rgba(16, 28, 21, 0.85);
             --alert-red: #ff3333;
             --success-green: #00ff66;
+
+            /* Paleta Selección Española */
+            --esp-red: #dc143c;
+            --esp-yellow: #ffcc00;
+            --esp-blue: #0f2b48;
+            --esp-panel-bg: rgba(20, 10, 15, 0.85);
         }
 
         body {
@@ -66,6 +72,62 @@
             background-color: var(--panel-bg);
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 255, 51, 0.1);
+        }
+
+        /* Estilos de la nueva sección Selección Española */
+        .panel-espana {
+            border: 1px solid var(--esp-yellow);
+            background-color: var(--esp-panel-bg);
+            padding: 20px;
+            box-shadow: 0 0 12px rgba(255, 204, 0, 0.25);
+            color: #ffffff;
+        }
+
+        .panel-espana h2 {
+            color: var(--esp-yellow);
+            border-bottom: 1px solid var(--esp-red);
+            padding-bottom: 5px;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .md-logo-container {
+            text-align: center;
+            margin: 15px 0;
+            padding: 10px;
+            background-color: var(--esp-blue);
+            border: 1px solid var(--esp-yellow);
+            border-radius: 4px;
+        }
+
+        .md-logo {
+            max-width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .md-logo-placeholder {
+            color: var(--esp-yellow);
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            padding: 5px 0;
+            text-transform: uppercase;
+        }
+
+        .card-pista {
+            background-color: rgba(220, 20, 60, 0.15);
+            border: 1px dashed var(--esp-yellow);
+            border-left: 4px solid var(--esp-red);
+            padding: 15px;
+            margin-top: 15px;
+            color: #ffffff;
+            box-shadow: inset 0 0 10px rgba(15, 43, 72, 0.5);
+        }
+
+        .card-pista strong {
+            color: var(--esp-yellow);
         }
 
         h2 {
@@ -315,6 +377,25 @@
             <button class="btn-action" onclick="validarDNI()">EJECUTAR VERIFICACIÓN</button>
             
             <div id="resultado-dni"></div>
+        </div>
+
+        <!-- SECCIÓN: SÚPERESTRELLA -->
+        <div class="panel-espana">
+            <h2>[07] Súperestrella</h2>
+            
+            <div class="md-logo-container">
+                <!-- Si se dispone de la imagen del logo, sustituir el src por la ruta correspondiente -->
+                <img src="mundo-deportivo-logo.png" alt="Mundo Deportivo" class="md-logo" onerror="this.style.display='none'; document.getElementById('md-logo-fallback').style.display='block';">
+                <div id="md-logo-fallback" class="md-logo-placeholder" style="display: none;">
+                    [ LOGO MUNDO DEPORTIVO ]
+                </div>
+            </div>
+
+            <div class="card-pista">
+                <p style="margin: 0;">
+                    <strong>Pista:</strong> Marc ha escrito un artículo en Mundo Deportivo donde se afirma que Villegas y Primo Dani fueron vistos con un jugador de la Selección Española en la habitación de su hotel en Madrid, justo antes de volver de la celebración del Mundial.
+                </p>
+            </div>
         </div>
 
     </div>
