@@ -74,7 +74,7 @@
             box-shadow: 0 0 10px rgba(0, 255, 51, 0.1);
         }
 
-        /* Estilos de la nueva sección Selección Española */
+        /* Estilos de la sección Selección Española */
         .panel-espana {
             border: 1px solid var(--esp-yellow);
             background-color: var(--esp-panel-bg);
@@ -128,6 +128,40 @@
 
         .card-pista strong {
             color: var(--esp-yellow);
+        }
+
+        .btn-espana {
+            background-color: var(--esp-blue);
+            color: var(--esp-yellow);
+            border: 1px solid var(--esp-yellow);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-espana:hover {
+            background-color: var(--esp-red);
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--esp-red);
+        }
+
+        #articulo-desplegable {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(15, 43, 72, 0.6);
+            border: 1px solid var(--esp-yellow);
+            color: #fff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         h2 {
@@ -333,7 +367,7 @@
             <p style="margin-top: 15px;">Si todo se desarrolla conforme a lo previsto, la operación continuará su curso... y, con suerte, <strong>todo irá sobre ruedas</strong>.</p>
         </div>
 
-        <!-- NUEVO APARTADO: MENSAJE DE VOZ DE VILLEGAS -->
+        <!-- APARTADO: MENSAJE DE VOZ DE VILLEGAS -->
         <div class="panel">
             <h2>[04] Intercepción de Audio // Villegas</h2>
             <p>Se ha interceptado una nota de voz cifrada en los servidores locales. El análisis sugiere comunicación directa del sujeto principal.</p>
@@ -384,7 +418,6 @@
             <h2>[07] Súperestrella</h2>
             
             <div class="md-logo-container">
-                <!-- Si se dispone de la imagen del logo, sustituir el src por la ruta correspondiente -->
                 <img src="mundo-deportivo-logo.png" alt="Mundo Deportivo" class="md-logo" onerror="this.style.display='none'; document.getElementById('md-logo-fallback').style.display='block';">
                 <div id="md-logo-fallback" class="md-logo-placeholder" style="display: none;">
                     [ LOGO MUNDO DEPORTIVO ]
@@ -396,6 +429,10 @@
                     <strong>Pista:</strong> Marc ha escrito un artículo en Mundo Deportivo donde se afirma que Villegas y Primo Dani fueron vistos con un jugador de la Selección Española en la habitación de su hotel en Madrid, justo antes de volver de la celebración del Mundial.
                 </p>
             </div>
+
+            <button class="btn-espana" id="btn-desplegar-articulo" onclick="desplegarArticulo()">[DESMITIFICAR INFORME // REVELAR ARTÍCULO]</button>
+
+            <div id="articulo-desplegable"></div>
         </div>
 
     </div>
@@ -521,6 +558,45 @@
                 } else {
                     resBox.innerHTML = "ERROR: CLAVE INCORRECTA / ACCESO RECHAZADO";
                 }
+            }
+        }
+
+        // Lógica de desclasificación progresiva del artículo
+        const textoArticulo = 
+`[FILTRACIÓN EXCLUSIVA // MUNDO DEPORTIVO - POR MARC]
+
+DOCUMENTO INTERCEPTADO POR LA CORPORACIÓN: "ENCUENTRO EN LASOMBRA DE MADRID"
+
+Las celebraciones oficiales por el título de la Selección Española tocaban a su fin en las calles de la capital, pero en las plantas altas del hotel de concentración las luces jamás llegaron a apagarse. 
+
+Fuentes confidenciales vinculadas a La Corporación confirman un hallazgo inquietante: dos de nuestros objetivos principales, Villegas y Primo Dani, lograron franquear todos los controles de seguridad de la RFEF e infiltrarse en la suite reservada de un internacional de 'La Roja'.
+
+¿Qué ocurrió realmente a puerta cerrada minutos antes del traslado al aeropuerto? Los registros mecánicos y las cámaras del corredor sufrieron una interferencia repentina. Sin embargo, testigos en la planta afirman haber escuchado conversaciones en clave sobre una inminente maniobra táctica y risas ahogadas que vinculan al jugador con los movimientos más oscuros de la Operación Villegas.
+
+La Corporación mantiene abiertas todas las hipótesis. El vínculo entre la élite deportiva internacional y la red de infiltrados de Vilanova ha dejado de ser una simple sospecha para convertirse en una amenaza confirmada. 
+
+Seguiremos informando... si las transmisiones lo permiten.`;
+
+        let escritoIniciado = false;
+
+        function desplegarArticulo() {
+            const contenedor = document.getElementById('articulo-desplegable');
+            const boton = document.getElementById('btn-desplegar-articulo');
+
+            if (!escritoIniciado) {
+                escritoIniciado = true;
+                contenedor.style.display = 'block';
+                boton.style.display = 'none'; // Se oculta el botón tras presionar
+
+                let index = 0;
+                function escribirMeca() {
+                    if (index < textoArticulo.length) {
+                        contenedor.textContent += textoArticulo.charAt(index);
+                        index++;
+                        setTimeout(escribirMeca, 18); // Velocidad del efecto máquina de escribir
+                    }
+                }
+                escribirMeca();
             }
         }
     </script>
