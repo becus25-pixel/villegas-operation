@@ -17,6 +17,12 @@
             --esp-yellow: #ffcc00;
             --esp-blue: #0f2b48;
             --esp-panel-bg: rgba(20, 10, 15, 0.85);
+
+            /* Paleta Festa Major de Sitges */
+            --sitges-red: #cc0000;
+            --sitges-bg: rgba(45, 10, 10, 0.85);
+            --sitges-accent: #ff4d4d;
+            --sitges-gold: #ffd700;
         }
 
         body {
@@ -74,7 +80,6 @@
             box-shadow: 0 0 10px rgba(0, 255, 51, 0.1);
         }
 
-        /* Estilos de la sección Selección Española */
         .panel-espana {
             border: 1px solid var(--esp-yellow);
             background-color: var(--esp-panel-bg);
@@ -90,6 +95,59 @@
             margin-top: 0;
             text-transform: uppercase;
             letter-spacing: 2px;
+        }
+
+        .panel-sitges {
+            border: 1px solid var(--sitges-accent);
+            background-color: var(--sitges-bg);
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(204, 0, 0, 0.4);
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .panel-sitges h2 {
+            color: var(--sitges-accent);
+            border-bottom: 1px solid var(--sitges-accent);
+            padding-bottom: 5px;
+            margin-top: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-sitges {
+            background-color: var(--sitges-red);
+            color: #ffffff;
+            border: 1px solid var(--sitges-accent);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-sitges:hover {
+            background-color: #ff1a1a;
+            color: #ffffff;
+            box-shadow: 0 0 15px var(--sitges-accent);
+        }
+
+        #vers-desplegable {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background-color: rgba(20, 0, 0, 0.7);
+            border: 1px solid var(--sitges-accent);
+            color: #fff;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            box-shadow: inset 0 0 10px rgba(255, 77, 77, 0.2);
         }
 
         .md-logo-container {
@@ -262,7 +320,6 @@
             margin-top: 10px;
         }
 
-        /* Estilos específicos para el reproductor de audio integrado */
         .audio-player-container {
             margin-top: 15px;
             background: #000;
@@ -364,10 +421,9 @@
                 <p><strong>Ubicación Clave:</strong> Vilanova (Mencionada en varias versiones).</p>
                 <p><strong>Informe de Entorno:</strong> No se ha confirmado nada, pero los informes coinciden en un detalle preocupante: <span style="color:#ffaa00;">huele un poco a sospechoso y a mar mal ventilado</span>.</p>
             </div>
-            <p style="margin-top: 15px;">Si todo se desarrolla conforme a lo previsto, la operación continuará su curso... y, con suerte, <strong>todo irá sobre ruedas</strong>.</p>
+            <p style="margin-top: 15px;">Si todo se desarrolla conforme a lo previsto, la operación continuará su curso... y, con suerte, <strong>todo irá sobre ruedas</strong> (o quizás no necesitemos el club de las cuatro ruedas... o quizás sí).</p>
         </div>
 
-        <!-- APARTADO: MENSAJE DE VOZ DE VILLEGAS -->
         <div class="panel">
             <h2>[04] Intercepción de Audio // Villegas</h2>
             <p>Se ha interceptado una nota de voz cifrada en los servidores locales. El análisis sugiere comunicación directa del sujeto principal.</p>
@@ -375,7 +431,6 @@
             <div class="audio-player-container">
                 <p style="margin: 0 0 10px 0; font-weight: bold; color: var(--alert-red);">[!] REPRODUCIR ARCHIVO ADJUNTO</p>
                 
-                <!-- Elemento de audio nativo -->
                 <audio id="audioVillegas" src="Operación Villegas.mp3"></audio>
                 
                 <div class="audio-controls">
@@ -398,6 +453,7 @@
             <ul class="intel-list" style="margin-bottom: 20px;">
                 <li>Los sujetos han sido avistados por diferentes clubes.</li>
                 <li>Los sujetos no se comunican con sus mujeres.</li>
+                <li>¿Ruta terrestre o escapada alternativa? Quizás no haga falta el club de las cuatro ruedas... o tal vez sí.</li>
             </ul>
 
             <div id="terminal-log">> Sistema listo. Esperando órdenes...</div>
@@ -413,7 +469,6 @@
             <div id="resultado-dni"></div>
         </div>
 
-        <!-- SECCIÓN: SÚPERESTRELLA -->
         <div class="panel-espana">
             <h2>[07] Súperestrella</h2>
             
@@ -426,7 +481,7 @@
 
             <div class="card-pista">
                 <p style="margin: 0;">
-                    <strong>Pista:</strong> Marc ha escrito un artículo en Mundo Deportivo sobre una grave filtración: se sospecha que Villegas y Primo Dani no solo estuvieron en la habitación del jugador de la Selección en Madrid, sino que **volvieron con él en el mismo convoy hacia el mismo destino**.
+                    <strong>Pista:</strong> Marc ha escrito un artículo en Mundo Deportivo sobre una grave filtración: se sospecha que Villegas y Primo Dani no solo estuvieron en la habitación del jugador de la Selección en Madrid, sino que **volvieron con él en el mismo convoy hacia el mismo destino**. ¿Un largo trayecto o un cambio de planes? Quizás no necesitamos el club de las cuatro ruedas... pero quizás sí.
                 </p>
             </div>
 
@@ -435,6 +490,16 @@
             <div id="articulo-desplegable"></div>
         </div>
 
+    </div>
+
+    <div class="panel-sitges">
+        <h2>🦅 Vers de Festa Major 🐉</h2>
+        <p>S'ha filtrat un vers d'una colla de la Festa Major de Sitges sobre la presència dels sospitosos a la vila:</p>
+        
+        <button class="btn-sitges" id="btn-desplegar-vers" onclick="desplegarVers()">Llegir vers</button>
+
+        <div id="vers-desplegable"></div>
+        <audio id="audioFmSitges" src="fmsitges.mp3"></audio>
     </div>
 
     <footer>
@@ -449,7 +514,7 @@
             "[MISTER] Cuenta Premium de Markus detectada en el servidor de Mundo Deportivo.",
             "[BIZUM] Esperando transferencias de 80€ de los agentes...",
             "[REQUERIMIENTO] Recordatorio: Se solicita personación urgente de Judith, Karla, Silvia y Laura.",
-            "[ESTADO] Todo sobre ruedas. Investigando ubicación precisa...",
+            "[ESTADO] Investigando medio de transporte... Quizás no necesitamos el club de las cuatro ruedas, ¿o sí?",
             "[AVISTAMIENTO] Los sujetos han sido avistados por diferentes clubes.",
             "[INTEL] Alerta de incomunicación: los sujetos no se comunican con sus mujeres."
         ];
@@ -463,7 +528,6 @@
             logBox.scrollTop = logBox.scrollHeight;
         }
 
-        // Lógica de control de audio de Villegas
         const audio = document.getElementById('audioVillegas');
         const statusText = document.getElementById('audio-status-text');
 
@@ -561,7 +625,6 @@
             }
         }
 
-        // Lógica de desclasificación progresiva del artículo
         const textoArticulo = 
 `[FILTRACIÓN EXCLUSIVA // MUNDO DEPORTIVO - POR MARC]
 
@@ -586,17 +649,70 @@ Seguiremos informando... si las transmisiones lo permiten.`;
             if (!escritoIniciado) {
                 escritoIniciado = true;
                 contenedor.style.display = 'block';
-                boton.style.display = 'none'; // Se oculta el botón tras presionar
+                boton.style.display = 'none';
 
                 let index = 0;
                 function escribirMeca() {
                     if (index < textoArticulo.length) {
                         contenedor.textContent += textoArticulo.charAt(index);
                         index++;
-                        setTimeout(escribirMeca, 18); // Velocidad del efecto máquina de escribir
+                        setTimeout(escribirMeca, 18);
                     }
                 }
                 escribirMeca();
+            }
+        }
+
+        const textoVers = 
+`[VERS FILTRAT // COLLA DE FESTA MAJOR DE SITGES]
+
+Pel bell mig del centre s'ha vist a en Ganfool,
+caminant ben xulo com si fos un sol!
+Pel nucli antic passeja en Markus molt atent,
+esquivant mirades de tota la gent.
+I a la Plaça Nova arriba en Villegas ben eixerit,
+fent xerinola enmig de la nit!
+
+Acompanyats del crack de la selecció,
+van fent la volta sense cap por.
+El jugador pensava que faria molta calor,
+però s'aclimata bé i gaudeix de la Festa Major!
+
+El Drac treu fumerola, l'Àliga és senyoria,
+els Diables peten fort i la vila ressona d'alegria!
+
+I quan el foc s'apaga i el timbal fa el seu retard,
+tots a una veu cridem ben alt:
+
+VISCA EL GLORIÓS SANT BARTOMEU,
+QUE DE SITGES N'ÉS PATRÓ!
+VISCA LA FESTA MAJOR!`;
+
+        let versIniciat = false;
+
+        function desplegarVers() {
+            const contenedor = document.getElementById('vers-desplegable');
+            const boton = document.getElementById('btn-desplegar-vers');
+            const audioFm = document.getElementById('audioFmSitges');
+
+            if (!versIniciat) {
+                versIniciat = true;
+                contenedor.style.display = 'block';
+                boton.style.display = 'none';
+
+                if (audioFm) {
+                    audioFm.play().catch(err => console.error("Error al reproducir fmsitges.mp3:", err));
+                }
+
+                let index = 0;
+                function escribirVers() {
+                    if (index < textoVers.length) {
+                        contenedor.textContent += textoVers.charAt(index);
+                        index++;
+                        setTimeout(escribirVers, 20);
+                    }
+                }
+                escribirVers();
             }
         }
     </script>
